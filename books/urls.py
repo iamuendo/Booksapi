@@ -16,7 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from books import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('books/', views.book_list),
+    path('books/<int:id>', views.book_detail)
 ]
+
+# This will make it easy to view the data json format
+urlpatterns = format_suffix_patterns(urlpatterns)
